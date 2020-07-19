@@ -4,7 +4,6 @@ const express = require('express')
 const router = express.Router()
 //Importing the Author Model
 const Author = require('../models/author')
-const author = require('../models/author')
 
 //All authors route
 router.get('/',async (req,res)=>{
@@ -14,10 +13,10 @@ router.get('/',async (req,res)=>{
          search.name= new RegExp(req.query.name, 'i')
          console.log(typeof search)
          console.log(req.query)
-         console.log(search.name)
+         console.log(`Typeof Search--- ${search.name}`)
      }
     try{
-        const authors = await Author.find({search})
+        const authors = await Author.find(search)
         res.render('../views/authors/index.ejs', {
             authors:authors,
         //    search:req.query
